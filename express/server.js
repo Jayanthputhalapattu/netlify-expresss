@@ -12,7 +12,7 @@ var uri = "mongodb+srv://jayanth:jayanth1610120@cluster0.rdnwp.mongodb.net/Razor
 var bodyParser = require('body-parser')
 
 app.use(bodyParser.json());
-var cors = require('cors')
+
 const router = express.Router();
 mongoose.connect(uri, {
   useNewUrlParser: true,
@@ -58,7 +58,7 @@ router.post("/succeescallback",(req,res,next)=>{
 router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
 
 
-
+app.use(bodyParser.json());
 app.use('/.netlify/functions/server', router);  // path must route to lambda
 app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
 
