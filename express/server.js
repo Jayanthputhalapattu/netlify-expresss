@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 var Razorpay = require('razorpay')
 var Userdata = require('./models/userdata');
 var mongoose = require('mongoose');
+var cors = require('cors')
 var uri = "mongodb+srv://jayanth:jayanth1610120@cluster0.rdnwp.mongodb.net/Razor?retryWrites=true&w=majority"
 // var connect = mongoose.connect(url);
 mongoose.connect(uri, {
@@ -23,7 +24,7 @@ var instance = new Razorpay({
   key_secret: 'OJQTgrrg1QrxN8P2O0LGHyOG',
  
 });
-
+app.use(cors())
 router.get('/', (req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/html' });
   res.write('<h1>Hello from Express.js!</h1>');
