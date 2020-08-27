@@ -44,6 +44,18 @@ instance.orders.create(options, function(err, order) {
   res.json(order)
 });
 })
+router.post("/succeescallback",(req,res,next)=>{
+	   
+    Userdata.create(req.body)
+    .then((user)=>{
+      res.statusCode = 200;
+           res.setHeader('Content-Type','application/json');
+           res.json(user);
+           console.log('inserted succesfully')
+           
+    },err=>next(err))
+    .catch((err)=>next(err))
+})
 app.use(bodyParser.json());
 app.use('/.netlify/functions/server', router);  // path must route to lambda
 app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
