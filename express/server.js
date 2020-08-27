@@ -31,7 +31,19 @@ router.get('/', (req, res) => {
 });
 router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
 router.post('/', (req, res) => res.json({ postBody: req.body }));
-router.get('/check', (req, res) => res.json({ route: req.originalUrl }));
+router.get('/check',(req,res,next)=>{
+  
+  var options = {
+  amount: 100,  // amount in the smallest currency unit
+  currency: "INR",
+  receipt: "order_rcptid_11",
+  payment_capture: '0'
+};
+instance.orders.create(options, function(err, order) {
+
+  res.json(order)
+});
+})
 app.use(bodyParser.json());
 app.use('/.netlify/functions/server', router);  // path must route to lambda
 app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
