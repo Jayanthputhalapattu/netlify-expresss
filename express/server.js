@@ -41,7 +41,7 @@ router.get('/checkk',(req,res,next)=>{
 };
 instance.orders.create(options, function(err, order) {
 
-  res.json(order)
+  res.send(order)
 });
 })
 router.post("/succeescallback",(req,res,next)=>{
