@@ -9,8 +9,20 @@ var Userdata = require('./models/userdata');
 var mongoose = require('mongoose');
 var uri = "mongodb+srv://jayanth:jayanth1610120@cluster0.rdnwp.mongodb.net/Razor?retryWrites=true&w=majority"
 // var connect = mongoose.connect(url);
+mongoose.connect(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => {
+  console.log("MongoDB Connected…")
+})
+.catch(err => console.log(err))
 const router = express.Router();
-
+var instance = new Razorpay({
+  key_id: 'rzp_test_RdkiOl654i5b7N',
+  key_secret: 'OJQTgrrg1QrxN8P2O0LGHyOG',
+ 
+});
 
 router.get('/', (req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/html' });
