@@ -4,8 +4,14 @@ const path = require('path');
 const serverless = require('serverless-http');
 const app = express();
 const bodyParser = require('body-parser');
-
+var Razorpay = require('razorpay')
+var Userdata = require('./models/userdata');
+var mongoose = require('mongoose');
+var uri = "mongodb+srv://jayanth:jayanth1610120@cluster0.rdnwp.mongodb.net/Razor?retryWrites=true&w=majority"
+// var connect = mongoose.connect(url);
 const router = express.Router();
+
+
 router.get('/', (req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/html' });
   res.write('<h1>Hello from Express.js!</h1>');
