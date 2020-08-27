@@ -8,6 +8,7 @@ var Razorpay = require('razorpay')
 var Userdata = require('./models/userdata');
 var mongoose = require('mongoose');
 var cors = require('cors')
+app.use(cors())
 var uri = "mongodb+srv://jayanth:jayanth1610120@cluster0.rdnwp.mongodb.net/Razor?retryWrites=true&w=majority"
 // var connect = mongoose.connect(url);
 mongoose.connect(uri, {
