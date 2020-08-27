@@ -30,7 +30,7 @@ var instance = new Razorpay({
 router.get('/',(req,res,next)=>{
     res.send("HELLO WORLD!")
 })
-app.get('/check',(req,res,next)=>{
+router.get('/check',(req,res,next)=>{
   
   var options = {
   amount: 100,  // amount in the smallest currency unit
@@ -43,7 +43,7 @@ instance.orders.create(options, function(err, order) {
   res.send(order)
 });
 })
-app.post("/succeescallback",(req,res,next)=>{
+router.post("/succeescallback",(req,res,next)=>{
 	   
     Userdata.create(req.body)
     .then((user)=>{
