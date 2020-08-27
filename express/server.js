@@ -15,7 +15,7 @@ mongoose.connect(uri, {
   useUnifiedTopology: true
 })
 .then(() => {
-  console.log("MongoDB Connected…")
+  console.log("MongoDB Connected")
 })
 .catch(err => console.log(err))
 // var instance = new Razorpay({
