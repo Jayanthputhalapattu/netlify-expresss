@@ -9,8 +9,14 @@ const Userdata = new Schema({
     },
     "razorpay_payment_id" :{
         type : String,
-        required : true
+        required : true,
+        unique:true
     },
+    "razorpay_signature":{
+        type:String ,
+        required:true,
+        unique:true
+    }
     
 
    

@@ -47,7 +47,8 @@ instance.orders.create(options, function(err, order) {
 });
 })
 router.post("/succeescallback",(req,res,next)=>{
-	   
+     
+  
     Userdata.create(req.body)
     .then((user)=>{
       res.statusCode = 200;
@@ -57,6 +58,16 @@ router.post("/succeescallback",(req,res,next)=>{
            
     },err=>next(err))
     .catch((err)=>next(err))
+   var generated_signature = hmac_sha256(razorpay_order_id + "|" + razorpay_payment_id,'OJQTgrrg1QrxN8P2O0LGHyOG' );
+    if (generated_signature==req.body.generated_signature)
+    {
+      res.statusCode = 200;
+      res.send("success payment")
+    }
+    else{
+      res.statusCode = 500
+      res.send("payment failed")
+    }
 })
 app.use(cors());
 app.use(bodyParser.json());
