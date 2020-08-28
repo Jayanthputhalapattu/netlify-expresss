@@ -54,7 +54,7 @@ router.post("/succeescallback",(req,res,next)=>{
       res.statusCode = 200;
            res.setHeader('Content-Type','application/json');
            res.json(user);
-           console.log('inserted succesfully')
+           console.log('inserted succesfully ')
            
     },err=>next(err))
     .catch((err)=>next(err))
