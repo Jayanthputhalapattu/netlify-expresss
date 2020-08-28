@@ -8,7 +8,7 @@ var Razorpay = require('razorpay')
 var Userdata = require('./models/userdata');
 var mongoose = require('mongoose');
 var cors = require('cors')
-app.use(cors())
+
 var uri = "mongodb+srv://jayanth:jayanth1610120@cluster0.rdnwp.mongodb.net/Razor?retryWrites=true&w=majority"
 // var connect = mongoose.connect(url);
 mongoose.connect(uri, {
@@ -25,14 +25,14 @@ var instance = new Razorpay({
   key_secret: 'OJQTgrrg1QrxN8P2O0LGHyOG',
  
 });
-app.use(cors())
+
 router.get('/', (req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/html' });
   res.write('<h1>Hello from Express.js!</h1>');
   res.end();
 });
-router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
-router.post('/', (req, res) => res.json({ postBody: req.body }));
+
+
 router.get('/checkk',(req,res,next)=>{
   
   var options = {
@@ -58,6 +58,7 @@ router.post("/succeescallback",(req,res,next)=>{
     },err=>next(err))
     .catch((err)=>next(err))
 })
+app.use(cors());
 app.use(bodyParser.json());
 app.use('/.netlify/functions/server', router);  // path must route to lambda
 app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
