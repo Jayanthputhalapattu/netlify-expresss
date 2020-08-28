@@ -58,8 +58,9 @@ router.post("/succeescallback",(req,res,next)=>{
            
     },err=>next(err))
     .catch((err)=>next(err))
+  
    var generated_signature = hmac_sha256(razorpay_order_id + "|" + razorpay_payment_id,'OJQTgrrg1QrxN8P2O0LGHyOG' );
-    if (generated_signature==req.body.generated_signature)
+    if (generated_signature==req.body.razorpay_signature)
     {
       res.statusCode = 200;
       res.send("success payment")
