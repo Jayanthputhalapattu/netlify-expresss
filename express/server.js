@@ -21,12 +21,16 @@ mongoose.connect(uri, {
 })
 .catch(err => console.log(err))
 const router = express.Router();
+// var instance = new Razorpay({
+//   key_id: 'rzp_test_RdkiOl654i5b7N',
+//   key_secret: 'OJQTgrrg1QrxN8P2O0LGHyOG',
+ 
+// });
 var instance = new Razorpay({
-  key_id: 'rzp_test_RdkiOl654i5b7N',
-  key_secret: 'OJQTgrrg1QrxN8P2O0LGHyOG',
+  key_id: 'rzp_live_mvXKJ9AvmwCwaz',
+  key_secret: 'uW23U93zXIWW71ox4EgMHuEZ',
  
 });
-
 router.get('/', (req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/html' });
   res.write('<h1>Hello from Express.js!</h1>');
