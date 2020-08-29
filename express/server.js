@@ -26,7 +26,7 @@ const router = express.Router();
 //   key_secret: 'OJQTgrrg1QrxN8P2O0LGHyOG',
  
 // });
-router.use(cors());
+
 var instance = new Razorpay({
   key_id: 'rzp_live_mvXKJ9AvmwCwaz',
   key_secret: 'uW23U93zXIWW71ox4EgMHuEZ',
@@ -91,7 +91,7 @@ router.post('/register/contest',(req,res,next)=>{
    .catch((err)=>next(err))
 })
 
-
+app.use(cors())
 app.use(bodyParser.json());
 app.use('/.netlify/functions/server', router);  // path must route to lambda
 app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
