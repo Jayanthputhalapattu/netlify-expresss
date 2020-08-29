@@ -8,9 +8,10 @@ var Razorpay = require('razorpay')
 var Userdata = require('./models/userdata');
 var mongoose = require('mongoose');
 var cors = require('cors')
-
+var Contest = require('./models/contest');
+const contest = require('./models/contest');
 var uri = "mongodb+srv://jayanth:jayanth1610120@cluster0.rdnwp.mongodb.net/Razor?retryWrites=true&w=majority"
-// var connect = mongoose.connect(url);
+
 mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -51,16 +52,40 @@ router.post("/succeescallback",(req,res,next)=>{
   
     Userdata.create(req.body)
     .then((user)=>{
-      res.statusCode = 200;
+           res.statusCode = 200;
            res.setHeader('Content-Type','application/json');
-           res.json(user);
-           console.log('inserted succesfully ')
+           res.send(true);
+           res.redirect('http:localhost:3001/success')
+          //  console.log('inserted succesfully ')
            
     },err=>next(err))
-    .catch((err)=>next(err))
+    
   
    
 })
+router.post('/find',(req,res,next)=>{
+  contest.findOne({email:req.body.email})
+  .then((email)=>{
+    if(email)
+    {
+      res.send(true)
+    }
+    else{
+      res.send(false)
+    }
+})
+})
+router.post('/register/contest',(req,res,next)=>{
+   Contest.create(req.body)
+   .then((contest)=>{
+     res.statusCode = 200;
+     res.setHeader('Content-Type','application/json');
+     res.json(contest);
+     console.log('inserted succesfully ')
+   },err=>next(err))
+   .catch((err)=>next(err))
+})
+
 app.use(cors());
 app.use(bodyParser.json());
 app.use('/.netlify/functions/server', router);  // path must route to lambda
