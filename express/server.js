@@ -26,7 +26,7 @@ const router = express.Router();
 //   key_secret: 'OJQTgrrg1QrxN8P2O0LGHyOG',
  
 // });
-app.use(cors());
+router.use(cors());
 var instance = new Razorpay({
   key_id: 'rzp_live_mvXKJ9AvmwCwaz',
   key_secret: 'uW23U93zXIWW71ox4EgMHuEZ',
