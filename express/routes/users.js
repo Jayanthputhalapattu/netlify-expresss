@@ -22,7 +22,7 @@ router.post('/signup', (req, res, next) => {
   User.register(new User({username: req.body.username}), 
     req.body.password, (err, user) => {
     if(err) {
-      res.statusCode = 500;
+      res.statusCode = 200;
       res.setHeader('Content-Type', 'application/json');
       res.json({err});
     }
@@ -33,7 +33,7 @@ router.post('/signup', (req, res, next) => {
         user.lastname = req.body.lastname;
       user.save((err, user) => {
         if (err) {
-          res.statusCode = 500;
+          res.statusCode = 200;
           res.setHeader('Content-Type', 'application/json');
           res.json({err: err});
           return ;
