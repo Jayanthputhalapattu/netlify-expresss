@@ -9,9 +9,12 @@ const user = require('./routes/users')
 var mongoose = require('mongoose');
 var cors = require('cors')
 var session = require('express-session')
-var passport = require('passport')
+var Userdata = require('./models/userdata')
+var passport = require('passport');
+const { verifyUser } = require('./authenticate');
 var uri = "mongodb+srv://jayanth:jayanth1610120@cluster0.rdnwp.mongodb.net/Razor?retryWrites=true&w=majority"
 var FileStore = require('session-file-store')(session)
+const use = require('./models/userdata')
 mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -29,13 +32,24 @@ router.get('/', (req, res) => {
 });
 router.use('/checkk',Check)
 router.use('/user',user)
-router.post("/succeescallback",(req,res,next)=>{
-    Userdata.create(req.body)
+router.post("/succeescallback",verifyUser,(req,res,next)=>{
+   var data = req.body;
+   data["user"] = req.user._id
+    Userdata.create(data)
     .then((user)=>{
            res.statusCode = 200;
            res.setHeader('Content-Type','application/json');
            res.send(true) 
     },err=>next(err))
+
+})
+router.get("/payment",verifyUser,(req,res,next)=>{
+  use.find({user:req.user._id})
+  .then((data)=>{
+    res.json(data)
+  })
+  
+   
 
 })
 

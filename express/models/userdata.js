@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const users = require('./users');
 const Schema  = mongoose.Schema;
 
 const Userdata = new Schema({
@@ -16,6 +17,10 @@ const Userdata = new Schema({
         type:String ,
         required:true,
         unique:true
+    },
+    "user":{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'User'
     }
     
 
