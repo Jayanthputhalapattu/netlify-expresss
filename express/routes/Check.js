@@ -24,7 +24,7 @@ var instance = new Razorpay({
 router.get('/',verifyUser,(req,res,next)=>{
   
     var options = {
-    amount: 100,  // amount in the smallest currency unit
+    amount: 3100,  // amount in the smallest currency unit
     currency: "INR",
     receipt: "order_rcptid_11",
     payment_capture: '0'
